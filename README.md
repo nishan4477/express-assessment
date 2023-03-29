@@ -4,4 +4,4 @@
 3. Create another POST route with `to-fahrenheit` that similarly converts celsius to fahrenheit.
 ---
 
-[:arrow_left: Go back to main branch](https://github.com/OttrTechnology/express-assessment)
+[:arrow_left: Go back to main branch](https://github.com/OttrTechnology/express-assessment#getting-started)
