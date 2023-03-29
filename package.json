@@ -3,15 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon ./src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "ava": "^5.2.0",
+    "got": "^12.6.0",
+    "nodemon": "^2.0.22",
+    "test-listen": "^1.1.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
