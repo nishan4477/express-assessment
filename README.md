@@ -5,7 +5,7 @@
   "message": "Route not found"
 }
 ```
-2. Create a global error handler that does the following:
+2. Create a separate global error handler that does the following:
   - Checks if error is instance of `AppError`.
   - If error is an instance of `AppError`, read and return its status code with its message(see above `json` response).
   - Also, if status code is **418**, change the message exactly to "The server refuses the attempt to brew coffee with a teapot.".
