@@ -1,3 +1,6 @@
+/**
+ * Please leave this file intact
+ */
 export default class AppError extends Error {
   httpStatusCode;
   isOperational;

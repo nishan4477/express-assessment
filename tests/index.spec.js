@@ -13,10 +13,49 @@ test.after.always((t) => {
   t.context.server.close();
 });
 
-test.serial("get /", async (t) => {
-  const { message } = await got("", {
-    prefixUrl: t.context.prefixUrl,
-  }).json();
+test.serial("check /example/help", async (t) => {
+  const { response } = await t.throwsAsync(
+    got("example/runtime-err", {
+      prefixUrl: t.context.prefixUrl,
+    }).json()
+  );
 
-  t.is(message, "👋🌎🌍🌏");
+  t.is(response.statusCode, 404);
+  t.is(response.body.message, "Route not found");
+});
+
+test.serial("check /example/throw-err", async (t) => {
+  const { response } = await t.throwsAsync(
+    got("example/throw-err", {
+      prefixUrl: t.context.prefixUrl,
+    }).json()
+  );
+
+  t.is(response.statusCode, 400);
+  t.is(response.body.message, "Failure is a part of progress");
+});
+
+test.serial("check /example/throw-app-err", async (t) => {
+  const { response } = await t.throwsAsync(
+    got("example/throw-app-err", {
+      prefixUrl: t.context.prefixUrl,
+    }).json()
+  );
+
+  t.is(response.statusCode, 418);
+  t.is(
+    response.body.message,
+    "The server refuses the attempt to brew coffee with a teapot."
+  );
+});
+
+test.serial("check /example/runtime-err", async (t) => {
+  const { response } = await t.throwsAsync(
+    got("example/runtime-err", {
+      prefixUrl: t.context.prefixUrl,
+    }).json()
+  );
+
+  t.is(response.statusCode, 500);
+  t.is(response.body.message, "Unknown error occurred");
 });

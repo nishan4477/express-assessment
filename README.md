@@ -1,14 +1,19 @@
-## Getting started
+# Tasks
+1. Create a 404 error handler that returns a **404** status code and the following `json` response:
+```json
+{
+  "message": "Route not found"
+}
+```
+2. Create a global error handler that does the following:
+  - Checks if error is instance of `AppError`.
+  - If error is an instance of `AppError`, read and return its status code with its message(see above `json` response).
+  - Also, if status code is **418**, change the message exactly to "The server refuses the attempt to brew coffee with a teapot.".
+  - If error is **NOT** an instance of AppError, return a **500** status code with the following `json` response:
+  ```json
+  {
+    "message": "Unknown error occured"
+  }
+  ```
 
-1. Fork this project.
-2. Clone **your forked repo** in your local machine.
-3. <kbd>Enter</kbd> `npm i` to install the required project dependencies.
-4. Visit the branch of the challenge you wish to tackle. (recommended to go in preferred order)
-5. <kbd>Enter</kbd> `npm run dev` to run the challenge and begin your tasks.
-6. You'll find further instructions in the `README.md` file of each challenge.
-
-# Challenges (in preferred order)
-
-| Branch               |                  Difficulty |                      Main Topics Covered                      |
-| :------------------- | --------------------------: | :-----------------------------------------------------------: |
-| [js/temp-converter](https://github.com/OttrTechnology/express-assessment/tree/js/temp-converter)       |                      :star: |             `request-handling`             |
+[:arrow_left: Go back to main branch](https://github.com/OttrTechnology/express-assessment#getting-started)
