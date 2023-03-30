@@ -15,5 +15,11 @@
     "message": "Unknown error occured"
   }
   ```
+  ---
+## Testing
+- Run the following command to check if your app works correctly.
+```bash
+npm test
+```
 
 [:arrow_left: Go back to main branch](https://github.com/OttrTechnology/express-assessment#getting-started)
