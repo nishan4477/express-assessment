@@ -13,10 +13,28 @@ test.after.always((t) => {
   t.context.server.close();
 });
 
-test.serial("get /", async (t) => {
-  const { message } = await got("", {
-    prefixUrl: t.context.prefixUrl,
-  }).json();
+test.serial("POST /transactions returns remaining amount after theft", async (t) => {
+  const amount = 20;
 
-  t.is(message, "👋🌎🌍🌏");
+  const res = await got
+    .post("transaction", { prefixUrl: t.context.prefixUrl, json: { amount } })
+    .json();
+
+  t.is(res.amount, amount / 2);
+});
+
+test.serial("application-level middleware works for all POST request", async (t) => {
+  const res = await got
+    .post("another-route", { prefixUrl: t.context.prefixUrl })
+    .json();
+
+  t.is(typeof res.amount, "number");
+});
+
+test.serial("application-level middleware doesn't work for any PATCH request", async (t) => {
+  const res = await got
+    .patch("another-route", { prefixUrl: t.context.prefixUrl })
+    .json();
+
+  t.is(typeof res.amount, "undefined");
 });

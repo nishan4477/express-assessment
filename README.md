@@ -1,15 +1,13 @@
-## Getting started
+# Tasks
+1. Create a <ins>**router-level**</ins> middleware called `stealAmount` and place it in the `/transaction` api in the `src\app.js` file.
+2. The middleware should intercept the amount sent in request and reduce it by half.
+3. If `"secure": true` is sent in the request body then the middleware should not steal.
+4. Create an <ins>**application-level**</ins> middleware for only the POST HTTP method that initializes amount to 0 if amount is not given. Place this middleware before any of the routes.
+  ---
+## Testing
+- Run the following command to check if your app works correctly.
+```bash
+npm test
+```
 
-1. Fork this project.
-2. Clone **your forked repo** in your local machine.
-3. <kbd>Enter</kbd> `npm i` to install the required project dependencies.
-4. Visit the branch of the challenge you wish to tackle. (recommended to go in preferred order)
-5. <kbd>Enter</kbd> `npm run dev` to run the challenge and begin your tasks.
-6. You'll find further instructions in the `README.md` file of each challenge.
-
-# Challenges (in preferred order)
-
-| Branch               |                  Difficulty |                      Main Topics Covered                      |
-| :------------------- | --------------------------: | :-----------------------------------------------------------: |
-| [js/temp-converter](https://github.com/OttrTechnology/express-assessment/tree/js/temp-converter)       |                      :star: |             `request-handling`             |
-| [js/catching-erors](https://github.com/OttrTechnology/express-assessment/tree/js/catching-erors)       |                      :star::star: |             `error-handling`             |
+[:arrow_left: Go back to main branch](https://github.com/OttrTechnology/express-assessment#getting-started)
