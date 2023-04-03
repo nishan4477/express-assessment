@@ -14,3 +14,4 @@
 | [js/temp-converter](https://github.com/OttrTechnology/express-assessment/tree/js/temp-converter)       |                      :star: |             `request-handling`             |
 | [js/catching-erors](https://github.com/OttrTechnology/express-assessment/tree/js/catching-erors)       |                      :star::star: |             `error-handling`             |
 | [js/middle-man](https://github.com/OttrTechnology/express-assessment/tree/js/middle-man)       |                      :star::star: |             `middleware`             |
+| [js/auth](https://github.com/OttrTechnology/express-assessment/tree/js/auth)       |                      :star::star::star::star: |            `request-handling` `auth` `middleware`             |
