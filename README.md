@@ -1,16 +1,13 @@
-## Getting started
+# Tasks
+1. Open `src/middlewares/auth.js` and implement the `isAuthenticated` and `isAuthorized` functions.
+2. For `isAuthenticated` check the request authorization header and verify the token present in it using the `secretKey` const defined. If verified, decode the token and set the `user` property in the request object. Also, if no token is found in the request, return `401` response.
+3. For `isAuthorized`, check if the `user` property in the request object has the `role` property as "admin".
+4. In `src/app.js`, implement the `/login` route by checking the request body's `username` and `password` against the `db` variable defined. If user is found, sign a jwt token with the payload of `id`, `username` and `role` (but NOT `password`) and return a `200` response with the token. Else, return a `401` response.
+  ---
+## Testing
+- Run the following command to check if your app works correctly.
+```bash
+npm test
+```
 
-1. Fork this project.
-2. Clone **your forked repo** in your local machine.
-3. <kbd>Enter</kbd> `npm i` to install the required project dependencies.
-4. Visit the branch of the challenge you wish to tackle. (recommended to go in preferred order)
-5. <kbd>Enter</kbd> `npm run dev` to run the challenge and begin your tasks.
-6. You'll find further instructions in the `README.md` file of each challenge.
-
-# Challenges (in preferred order)
-
-| Branch               |                  Difficulty |                      Main Topics Covered                      |
-| :------------------- | --------------------------: | :-----------------------------------------------------------: |
-| [js/temp-converter](https://github.com/OttrTechnology/express-assessment/tree/js/temp-converter)       |                      :star: |             `request-handling`             |
-| [js/catching-erors](https://github.com/OttrTechnology/express-assessment/tree/js/catching-erors)       |                      :star::star: |             `error-handling`             |
-| [js/middle-man](https://github.com/OttrTechnology/express-assessment/tree/js/middle-man)       |                      :star::star: |             `middleware`             |
+[:arrow_left: Go back to main branch](https://github.com/OttrTechnology/express-assessment#getting-started)
