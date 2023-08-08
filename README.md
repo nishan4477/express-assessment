@@ -1,6 +1,6 @@
 ## Getting started
 
-1. Fork this project.
+1. Fork this project and make sure to uncheck the "Copy the main branch only." option.
 2. Clone **your forked repo** in your local machine.
 3. <kbd>Enter</kbd> `npm i` to install the required project dependencies.
 4. Visit the branch of the challenge you wish to tackle. (recommended to go in preferred order)
