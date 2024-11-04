@@ -1,7 +1,8 @@
 import express, { json } from "express";
 // import morgan from "morgan";
-import helmet from "helmet";
 import cors from "cors";
+import helmet from "helmet";
+import router from "./routes/temperatures.js";
 
 const app = express();
 
@@ -16,5 +17,7 @@ app.use(json());
 app.get("/", (req, res) => {
   res.json({ message: "👋🌎🌍🌏" });
 });
+
+app.use("/api", router);
 
 export default app;

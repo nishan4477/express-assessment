@@ -1,6 +1,6 @@
-import http from "http";
 import test from "ava";
 import got from "got";
+import http from "http";
 import listen from "test-listen";
 import app from "../src/app.js";
 
@@ -17,7 +17,7 @@ test.serial(
   "/to-celsius returns celsius as 0 when input is { fahrenheit: 32 }",
   async (t) => {
     const { celsius } = await got
-      .post("to-celsius", {
+      .post("api/to-celsius", {
         prefixUrl: t.context.prefixUrl,
         json: { fahrenheit: 32 },
       })
@@ -31,7 +31,7 @@ test.serial(
   "/to-fahrenheit returns fahrenheit as 41 when input is { celsius: 5 }",
   async (t) => {
     const { fahrenheit } = await got
-      .post("to-fahrenheit", {
+      .post("api/to-fahrenheit", {
         prefixUrl: t.context.prefixUrl,
         json: { celsius: 5 },
       })
@@ -43,14 +43,14 @@ test.serial(
 
 test.serial("-40 fahrenheit should equal to -40 celsius", async (t) => {
   const { celsius } = await got
-    .post("to-celsius", {
+    .post("api/to-celsius", {
       prefixUrl: t.context.prefixUrl,
       json: { fahrenheit: -40 },
     })
     .json();
 
   const { fahrenheit } = await got
-    .post("to-fahrenheit", {
+    .post("api/to-fahrenheit", {
       prefixUrl: t.context.prefixUrl,
       json: { celsius: -40 },
     })
