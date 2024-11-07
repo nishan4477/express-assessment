@@ -1,9 +1,10 @@
-import express, { json } from "express";
-import morgan from "morgan";
-import helmet from "helmet";
 import cors from "cors";
+import express, { json } from "express";
+import helmet from "helmet";
+import morgan from "morgan";
 
 import exampleApi from "./api/example.js";
+import { errorHandler } from "./errorHandler.js";
 
 const app = express();
 
@@ -17,5 +18,11 @@ app.get("/", (req, res) => {
 });
 
 app.use("/example", exampleApi);
+
+app.use(errorHandler);
+
+app.use((req, res) => {
+  return res.status(404).json({ message: "Route not found" });
+});
 
 export default app;
