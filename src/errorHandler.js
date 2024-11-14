@@ -1,6 +1,6 @@
 import AppError from "./exceptions/AppError.js";
 
-export const errorHandler = (err, req, res, next) => {
+export const errorHandler = (err, _req, res, _next) => {
   if (err instanceof AppError) {
     const message =
       err.httpStatusCode === 418
@@ -12,6 +12,6 @@ export const errorHandler = (err, req, res, next) => {
     });
   }
   return res.status(500).json({
-    message: "Unknown error ocurred",
+    message: "Unknown error occurred",
   });
 };

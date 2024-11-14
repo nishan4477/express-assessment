@@ -1,6 +1,6 @@
-import http from "http";
 import test from "ava";
 import got from "got";
+import http from "http";
 import listen from "test-listen";
 import app from "../src/app.js";
 
@@ -15,13 +15,15 @@ test.after.always((t) => {
 
 test.serial("check /example/help", async (t) => {
   const { response } = await t.throwsAsync(
-    got("example/runtime-err", {
+    got("example/help", {
       prefixUrl: t.context.prefixUrl,
     }).json()
   );
 
+  console.log(typeof response.body);
+
   t.is(response.statusCode, 404);
-  t.is(response.body.message, "Route not found");
+  t.is(JSON.parse(response.body).message, "Route not found");
 });
 
 test.serial("check /example/throw-err", async (t) => {
@@ -32,7 +34,7 @@ test.serial("check /example/throw-err", async (t) => {
   );
 
   t.is(response.statusCode, 400);
-  t.is(response.body.message, "Failure is a part of progress");
+  t.is(JSON.parse(response.body).message, "Failure is a part of progress");
 });
 
 test.serial("check /example/throw-app-err", async (t) => {
@@ -44,7 +46,7 @@ test.serial("check /example/throw-app-err", async (t) => {
 
   t.is(response.statusCode, 418);
   t.is(
-    response.body.message,
+    JSON.parse(response.body).message,
     "The server refuses the attempt to brew coffee with a teapot."
   );
 });
@@ -56,6 +58,8 @@ test.serial("check /example/runtime-err", async (t) => {
     }).json()
   );
 
+  console.log(response.statusCode);
   t.is(response.statusCode, 500);
-  t.is(response.body.message, "Unknown error occurred");
+
+  t.is(JSON.parse(response.body).message, "Unknown error occurred");
 });

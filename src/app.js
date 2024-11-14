@@ -21,7 +21,7 @@ app.use("/example", exampleApi);
 
 app.use(errorHandler);
 
-app.use((req, res) => {
+app.use((_req, res) => {
   return res.status(404).json({ message: "Route not found" });
 });
 
