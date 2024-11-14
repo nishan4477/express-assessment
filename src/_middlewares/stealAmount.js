@@ -3,8 +3,8 @@
  */
 
 export const stealAmount = (req, res, next) => {
-  const { amount } = req.body;
-  const halfAmount = amount / 2;
-  req.body.amount = halfAmount;
+  if (req.body.amount && req.body.secure !== true) {
+    req.body.amount = req.body.amount / 2;
+  }
   next();
 };
