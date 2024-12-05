@@ -1,11 +1,11 @@
-import express, { json } from "express";
-import morgan from "morgan";
-import helmet from "helmet";
 import cors from "cors";
-import jwt from "jsonwebtoken";
 import { config } from "dotenv";
-import { MockedDB } from "./mock-db.js";
+import express, { json } from "express";
+import helmet from "helmet";
+import jwt from "jsonwebtoken";
+import morgan from "morgan";
 import { isAuthenticated, isAuthorized } from "./middlewares/auth.js";
+import { MockedDB } from "./mock-db.js";
 
 config();
 
@@ -29,17 +29,30 @@ app.post("/login", (req, res) => {
    *
    * user will return undefined if not found
    */
+
+  const { username, password } = req.body;
+  const user = db.findUser({ username: username, password: password });
+  if (!user) {
+    return res.status(401).json({ message: "Invalid credentials" });
+  }
+  const token = jwt.sign(
+    { username: user.username, role: user.role },
+    secretKey
+  );
+
+  res.json({ token });
+  is;
 });
 
 // TODO: Make the following route require authentication
-app.get("/protected", (req, res) => {
+app.get("/protected", isAuthenticated, (req, res) => {
   res
     .status(200)
     .json({ message: "You are authorized to access this resource" });
 });
 
 // TODO: Make the following route require both authentication and authorization
-app.get("/admin", (req, res) => {
+app.get("/admin", isAuthenticated, isAuthorized, (req, res) => {
   res.status(200).json({
     message: "Hi Admin, you are authorized to access the admin panel.",
   });
